@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign In & Sign Up</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        function showSignUp() {
+            document.getElementById("signin").classList.add("hidden");
+            document.getElementById("signup").classList.remove("hidden");
+        }
+        function showSignIn() {
+            document.getElementById("signup").classList.add("hidden");
+            document.getElementById("signin").classList.remove("hidden");
+        }
+        function authenticate(event) {
+            event.preventDefault();
+
+            // Show popup message
+            document.getElementById("popup").classList.remove("hidden");
+
+            // Faster redirection (0.5s delay instead of 2s)
+            setTimeout(() => {
+                window.location.href = "https://yashaswi315.github.io/tourism/";
+            }, 500);
+        }
+        function closePopup() {
+            document.getElementById("popup").classList.add("hidden");
+        }
+    </script>
+    <style>
+        body {
+            background-image: url('travelling.jpg'); /* Replace with your image */
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+        
+        /* Animation for signup section */
+        #signup {
+            background-color: #4a5568; /* Dark gray background */
+            color: white; /* Ensure text is visible */
+            padding: 2rem;
+            border-radius: 10px;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(0.9); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        /* Make input text visible */
+        input {
+            color: black !important; /* Ensure text inside input is visible */
+            background-color: white !important; /* Keep input background white */
+        }
+    </style>
+</head>
+<body class="flex justify-center items-center h-screen relative bg-gray-900 bg-opacity-50">
+
+    <!-- Popup Message -->
+    <div id="popup" class="hidden fixed top-0 left-0 w-full h-full flex justify-center items-center bg-black bg-opacity-50">
+        <div class="bg-white p-6 rounded-lg shadow-lg text-center">
+            <h2 class="text-2xl font-bold text-green-500">🎉 Welcome to Tourism! 🎉</h2>
+            <p class="mt-2 text-gray-600">Get ready to explore the world!</p>
+            
+        </div>
+    </div>
+
+    <div class="bg-white p-8 rounded-lg shadow-lg w-96 text-center bg-opacity-90">
+        
+        <!-- Sign In Form -->
+        <div id="signin">
+            <h2 class="text-2xl font-bold mb-4">Sign In</h2>
+            <form onsubmit="authenticate(event)">
+                <input type="email" placeholder="Email" class="w-full p-2 mb-2 border rounded" required>
+                <input type="password" placeholder="Password" class="w-full p-2 mb-4 border rounded" required>
+                <button class="bg-blue-500 text-white px-6 py-2 rounded w-full">Sign In</button>
+            </form>
+            <p class="mt-4">Don't have an account? <a href="#" class="text-blue-500" onclick="showSignUp()">Sign Up</a></p>
+        </div>
+        
+        <!-- Sign Up Form -->
+        <div id="signup" class="hidden">
+            <h2 class="text-2xl font-bold mb-4">Sign Up</h2>
+            <form onsubmit="authenticate(event)">
+                <input type="text" placeholder="Full Name" class="w-full p-2 mb-2 border rounded text-black" required>
+                <input type="email" placeholder="Email" class="w-full p-2 mb-2 border rounded text-black" required>
+                <input type="password" placeholder="Password" class="w-full p-2 mb-4 border rounded text-black" required>
+                <button class="bg-green-500 text-white px-6 py-2 rounded w-full">Sign Up</button>
+            </form>
+            <p class="mt-4">Already have an account? <a href="#" class="text-blue-500" onclick="showSignIn()">Sign In</a></p>
+        </div>
+    </div>
+
+</body>
+</html>
